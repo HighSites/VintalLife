@@ -27,7 +27,14 @@ button
 //custom glob rules
 
 body
+    --color-text: $colorText
+    --color-bg: $colorBg
     background-color: $colorBg
+
+    &_theme--dark
+        --color-text: $colorText_theme--dark
+        --color-bg: $colorBg_theme--dark
+
     &.lock
         overflow: hidden
 
@@ -45,6 +52,6 @@ main
 
 .container
     position: relative
-    @include avr_mid(padding-inline, 30px, 50px, 80px)
+    @include avr(padding-inline, 28px, 210px)
     margin: auto
     max-width: $widthMax

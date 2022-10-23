@@ -2,75 +2,46 @@
 @use 'mixins' as *
 
 .headline //h1
-    font-family: 'Montserrat', fantasy
-    font-weight: 900
-    @include avr_mid(font-size, 120px, 60px, 40px)
-    letter-spacing: 0.4px
+    font-family: 'SovMod', fantasy
+    font-weight: 400
+    font-size: rem(40px)
+    line-height: 1.15
     text-align: left
 
 .headline--small //h5
-    font-family: 'Montserrat', fantasy
-    font-weight: 600
-    @include avr_mid(font-size, 32px, 22px, 13px)
-    letter-spacing: 4px
-    text-align-last: left
+    font-family: 'SovMod', fantasy
+    font-weight: 400
+    @include avr(font-size, 30px, 40px)
+    line-height: 1.15
+    text-align: center
 
 .title //h2
-    font-family: 'Montserrat', fantasy
-    font-weight: 800
-    @include avr_mid(font-size, 80px, 45px, 25px)
-    letter-spacing: .04em
+    font-family: 'Montserrat', sans-serif
+    font-weight: 500
+    font-size: rem(25px)
     text-align: left
 
-.subtitle //h3
-    font-family: 'Montserrat', fantasy
-    font-weight: 800
-    @include avr(font-size, 45px, 25px)
-    letter-spacing: .04em
-    text-align: center
-
-.subtitle--small //h4
-    font-family: 'Montserrat', fantasy
-    font-weight: 800
-    @include avr_mid(font-size, 32px, 28px, 22px)
-    letter-spacing: .03px
-    text-align: center
-
-.descriptor
-    font-family: 'FiraSans', system-ui
+.text
+    font-family: 'Montserrat', sans-serif
     font-weight: 400
-    @include avr_mid(font-size, 18px, 16px, 13px)
-    letter-spacing: 8px
+    font-size: rem(16px)
+    line-height: 1.15
     text-align: left
+
+.cursive
+    font-family: 'monotypecorsiva', serif
+    font-weight: 400
+    @include avr(font-size, 18px, 25px)
+    letter-spacing: .11em
 
 .btn-text
-    font-family: 'Monsterrat', fantasy
+    font-family: 'Monsterrat', sans-serif
     font-weight: 700
-    @include avr_mid(font-size, 34px, 22px, 13px)
-    letter-spacing: .04em
+    @include avr(font-size, 14px, 16px)
+    white-space: nowrap
+    text-align: center
 
-.btn-text--geometric
-    font-family: 'Oxanium', monospace
-    font-weight: 400
-    @include avr_mid(font-size, 20px, 17px, 12px)
-    letter-spacing: .03px
-
-.btn-text--short
-    font-family: 'Monsterrat', fantasy
-    font-weight: 800
-    font-size: rem(40px)
-    letter-spacing: .03px
-    
-
-@supports not (font-variation-settings: "wdth" 115)
-    .headline
-        font-weight: 800
-    .headline--secondary
-        font-weight: 700
 
 body
-    font-family: 'Montserrat', fantasy
-    font-weight: 400
-    font-size: rem(18px)
-    color: $colorText
-    text-transform: uppercase
+    @extend .text
+    color: var(--color-text)
