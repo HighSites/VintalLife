@@ -1,0 +1,1 @@
+console.log(`SO.... I'm basicly an index paggggge`)

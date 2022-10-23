@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        
+        <link rel="shortcut icon" href="@imgs/favicon.png" type="image/x-icon">
+        <link rel="preload" as="style" href="style/{% block pageId %}{% endblock %}.min.css" onload="this.onload=null;this.rel='stylesheet'">
+        <style>
+            {% block style %}{% endblock %}
+        </style>
+        <script defer src="js/app.min.js"></script>
+
+        <title>
+            {% block title %}{% endblock %}
+        </title>
+    </head>
+    <body>
+        <div class="wrapper">
+            <header class="header">{% include "./parts/header/_header.html" %}</header>
+            <main>{% block pageContent %}{% endblock %}</main>
+            <footer class="footer">{% include "./parts/footer/_footer.html" %}</footer>
+        </div>
+    </body>
+</html>

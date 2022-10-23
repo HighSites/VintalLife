@@ -1,0 +1,50 @@
+@use 'comps' as *
+
+//html glob rules
+
+html
+    scroll-behavior: smooth
+
+*, *::before, *::after
+    box-sizing: border-box
+
+h1, h2, h3, h4, h5, h6
+    font-weight: inherit
+    font-size: inherit
+
+a
+    color: inherit
+    text-decoration: none
+
+img
+    vertical-align: top
+
+button
+    cursor: pointer
+    font: inheri
+    background: none
+
+//custom glob rules
+
+body
+    background-color: $colorBg
+    &.lock
+        overflow: hidden
+
+.wrapper
+    position: relative
+    min-height: 100vh
+    display: flex
+    flex-direction: column
+    align-items: center
+    justify-content: center
+    overflow: hidden
+
+main
+    flex-grow: 1
+
+.container
+    position: relative
+    @include avr_mid(padding-inline, 30px, 50px, 80px)
+    margin: auto
+    max-width: $widthMax

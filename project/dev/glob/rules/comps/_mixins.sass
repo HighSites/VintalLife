@@ -1,0 +1,87 @@
+@use 'variables' as *
+@use 'sass:math'
+@use 'sass:string'
+
+//functions to transfer units:
+
+@function prc($part, $base)
+    @return math.div($part, $base) * 100%
+
+@function rem($px)
+    @return math.div($px, 16px) * 1rem
+
+@function em($init, $base: 16px)
+    @return math.div($init, $base) * 1em
+
+//mixin for combining animations:
+
+@mixin anim($props, $type: short)
+    $time: $animTime--short
+    $exp: ""
+    @if type == long
+         $time: $animTime--long
+    @if type == anim
+         $time: $animTime--anim
+    @for $i from 1 through length($props)
+        $exp: $exp + ", " + #{nth($props, $i)} + " " + $time
+    $exp: string.slice($exp, 2)
+    transition: string.unquote($exp)
+
+//mixins and functions for adaptive values
+
+@mixin avr($props, $initSize, $endSize, $initWidth: $bpMin, $endWidth: $bpMax, $type: 0)
+    $difSize: math.div($endSize - $initSize, 1px)
+    $difWidth: math.div($endWidth - $initWidth, 1px)
+    $endSize: rem($endSize)
+    $exp: calc(#{$endSize} - #{$difSize} * (#{$endWidth} - 100vw) / #{$difWidth})
+    @for $i from 1 through length($props)
+        $property: #{nth($props, ($i))}
+        $property: $exp
+        @if $type == 0
+            @media (min-width: #{em($endWidth)})
+                $property: $endSize
+    //the name of the mixin refers to "Adaptive Value in Rem", the rem support is commented (few lines above), but you can turn it on (just remember that calc() function in Css works well only with px units(in subtitution from 100vw - which is the key operation here), so even if you transfer value to rem units, at the end you will appear with rem-px units at the result value)
+    // This mixin makes the values of listed properties smoothly grow from min value to max value due to changing of the screen
+    // Default avoking requires properties (listed as the first argument without quotes or commas) and min+max values
+    // It will make each property have min value at scree width equal to $bpMin and max value at $bpMax
+    // And the value will stop growing after maximum width (type = 0)
+    //to change this behaviour you can redefine screen width for min value, screen width for max value, and type (any value exept 0 for infinite growing)
+    //if you need the same behaviour, but with some mid value for mid screen width - please use "avr_mid" mixin
+
+@function avr_exp($initSize, $endSize, $initWidth: $bpMin, $endWidth: $bpMax)
+    $difSize: math.div($endSize - $initSize, 1px)
+    $difWidth: math.div($endWidth - $initWidth, 1px)
+    $endSize: rem($endSize)
+    @return calc(#{$endSize} - #{$difSize} * (#{$endWidth} - 100vw) / #{$difWidth})
+    //sometimes its the adaptive expression needs to be inserted as a part of property, not it all (for example in transform: translateX())
+    //it's easier to just extract this expression than to change mixin logic
+
+@mixin avr_mid($props, $initSize, $midSize, $endSize, $initWidth: $bpMin, $midWidth: $bpMid, $endWidth: $bpMax, $type: 0)
+    @include avr($props, $initSize, $midSize, $endWidth: $midWidth, $type: 1)
+    @media (min-width: #{em($midWidth)})
+        @include avr($props, $midSize, $endSize, $midWidth, $endWidth, 1)
+    @if type == 0
+        @media (min-width: #{em($endWidth)})
+            @for $i from 1 through length($props)
+                #{nth($props, $i)}: $endSize
+    //this mixins is just handfull in terms of mobile-tablet-desctop designs
+
+@mixin avr_midImp($props, $initSize, $midSize, $endSize, $initWidth: $bpMin, $midWidth: $bpMid, $endWidth: $bpMax)
+    @for $i from 1 through length($props)
+        $property: #{nth($props, $i)}
+        $property: $initSize
+
+        @if not ($midSize == nan)
+            @media (min-width: #{em($midWidth)})
+                $property: $midSize    
+
+        @if not ($endSize == nan)
+            @media (min-width: #{em($endWidth)})
+                $property: $endSize    
+    //it's convinient to use avr_mid mixin to write 2 media queries
+    //but due to calc issues it can be used only with px, so this is a callback for %, deg, em, turn etc
+    
+    
+         
+    
+         
