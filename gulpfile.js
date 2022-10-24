@@ -34,6 +34,7 @@ import server from './gulp/tasks/Server.js';
 import watcher from './gulp/tasks/Watcher.js';
 import for_html from './gulp/tasks/Nunjucks.js';
 import for_styles from './gulp/tasks/Sass.js';
+import for_stylesInline from './gulp/tasks/CriticalCss.js';
 import for_imgs from './gulp/tasks/Imgs.js';
 import for_scripts from './gulp/tasks/Js.js';
 import for_fonts from "./gulp/tasks/Fonts.js";
@@ -44,8 +45,8 @@ import zip from './gulp/tasks/Zip.js';
 let build = $.gulp.series(
     clear,
     for_fonts,
-    for_styles,
-    $.gulp.parallel(for_html, for_imgs, for_scripts, svgSprite)
+    for_stylesInline,
+    $.gulp.parallel(for_html, for_styles, for_imgs, for_scripts, svgSprite)
 );
 
 let dev = $.gulp.series(

@@ -36,6 +36,11 @@ export default {
         system: pathSystem + '/_styles'
     },
 
+    styleInline: {
+        src: pathPages + `/**/_inlineCss/!*.${css_preproc}`,
+        watch: pathPages + `/**/_inlineCss/!*.${css_preproc}`
+    },
+
     script: {
         src: pathSrc + '/**/*.js',
         watch: pathSrc + '/**/*.js',
