@@ -1,5 +1,5 @@
 
-![Cover](https://raw.githubusercontent.com/HighSites/HighSites/main/assets/VintalLife-cover.jpg)
+![Cover](https://raw.githubusercontent.com/HighSites/HighSites/main/assets/VintalLife/VintalLife-cover.jpg)
 
 <h1 align="center">Vintal Life</h1>
 
@@ -27,7 +27,7 @@
 
 ---
 
-<h3 align="center"><i>My notes about the process are published in wiki section</i></h3>
+<h3 align="center">🎀<i>My notes about the process are published in wiki section</i>🎀</h3>
   
 ![Code falling](https://raw.githubusercontent.com/HighSites/HighSites/main/assets/TopToDown.svg)
   

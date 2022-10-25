@@ -32,39 +32,4 @@ let Sass = () => {
         .pipe($.browserSync.stream())
 };
 
-let SassInline = () => {
-    return $.gulp.src($.path.style.srcNot)
-        .pipe($.plumber($.conf.plumber))
-        .pipe(sass({ includePaths: [$.path.system] }))
-        .pipe($.replace("@imgs/", "../" + $.path.imgs.dest_cat))
-        .pipe($.gulpif($.conf.isProd || $.conf.isPreProd, $.gulpif($.conf.isAvif, avifCss())))
-        .pipe($.gulpif($.conf.isProd || $.conf.isPreProd, $.gulpif($.conf.noAvif, webpCss())))
-        .pipe($.gulpif($.conf.isProd || $.conf.isPreProd, autoprefixer($.conf.autoprefixer)))
-        .pipe($.gulpif($.conf.isProd || $.conf.isPreProd, groupCssMediaQueries()))
-        .pipe($.gulpif($.conf.isProd || $.conf.isPreProd, size({ title: "Css [pre]size = " })))
-        .pipe($.gulpif($.conf.isProd || $.conf.isPreProd, $.gulp.dest($.path.style.dest, { sourcemaps: $.conf.isDev })))
-        .pipe($.gulpif($.conf.isProd || $.conf.isPreProd, csso()))
-        .pipe($.gulpif($.conf.isProd || $.conf.isPreProd, size({ title: "Css [post]size = " })))
-        .pipe(rename({ suffix: ".min" }))
-        .pipe($.gulp.dest((file) => file.base))
-        .pipe($.browserSync.stream())
-}
-
-let SassCriticalDublicate = () => {
-    return $.gulp.src($.path.style.srcNot)
-        .pipe($.plumber($.conf.plumber))
-        .pipe(sass({ includePaths: [$.path.system] }))
-        .pipe($.replace("@imgs/", "../" + $.path.imgs.dest_cat))
-        .pipe($.gulpif($.conf.isProd || $.conf.isPreProd, $.gulpif($.conf.isAvif, avifCss())))
-        .pipe($.gulpif($.conf.isProd || $.conf.isPreProd, $.gulpif($.conf.noAvif, webpCss())))
-        .pipe($.gulpif($.conf.isProd || $.conf.isPreProd, autoprefixer($.conf.autoprefixer)))
-        .pipe($.gulpif($.conf.isProd || $.conf.isPreProd, groupCssMediaQueries()))
-        .pipe(rename((file) => {
-            file.basename=file.dirname;
-        }))
-        .pipe($.gulp.dest($.path.style.dest+'/inline'))
-}
-
-import gulp from 'gulp';
-
-export default gulp.parallel(Sass, SassInline, SassCriticalDublicate);
+export default Sass;

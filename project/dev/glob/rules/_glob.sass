@@ -20,23 +20,47 @@ img
     vertical-align: top
 
 button
+    padding: 0
+    border: none
     cursor: pointer
-    font: inheri
+    font: inherit
     background: none
 
 //custom glob rules
 
 body
-    --color-text: $colorText
-    --color-bg: $colorBg
-    background-color: $colorBg
-
-    &_theme--dark
-        --color-text: $colorText_theme--dark
-        --color-bg: $colorBg_theme--dark
+    position: relative
+    margin: 0
+    background-color: var(--color-bg)
+    @include anim(color background-color, long)
+    &::after
+        content: ''
+        display: inline-block
+        position: absolute
+        z-index: -1
+        width: 100%
+        height: 100%
+        top: 0
+        left: 0
+        background-color: rgba(#000, .5)
+        opacity: 0
+        @include anim(opacity)
 
     &.lock
         overflow: hidden
+        &::after
+            opacity: 1
+            z-index: auto
+
+.body
+    &_theme--light
+        --color-text: #{$colorText}
+        --color-bg: #{$colorBg}
+
+    &_theme--dark
+        --color-text: #{$colorText_theme--dark}
+        --color-bg: #{$colorBg_theme--dark}
+
 
 .wrapper
     position: relative

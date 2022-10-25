@@ -36,10 +36,10 @@
     $exp: calc(#{$endSize} - #{$difSize} * (#{$endWidth} - 100vw) / #{$difWidth})
     @for $i from 1 through length($props)
         $property: #{nth($props, ($i))}
-        $property: $exp
+        #{$property}: #{$exp}
         @if $type == 0
             @media (min-width: #{em($endWidth)})
-                $property: $endSize
+                #{$property}: #{$endSize}
     //the name of the mixin refers to "Adaptive Value in Rem", the rem support is commented (few lines above), but you can turn it on (just remember that calc() function in Css works well only with px units(in subtitution from 100vw - which is the key operation here), so even if you transfer value to rem units, at the end you will appear with rem-px units at the result value)
     // This mixin makes the values of listed properties smoothly grow from min value to max value due to changing of the screen
     // Default avoking requires properties (listed as the first argument without quotes or commas) and min+max values
