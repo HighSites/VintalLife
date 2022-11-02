@@ -2,13 +2,14 @@
 
 {% block pageId %}index{% endblock %}
 
-{% block title %}MY TITLE!!!{% endblock %}
+{% block title %}VintalLife{% endblock %}
 
 {% block style %}
     {% include "pages/index/_inlineCss/!CriticalCss.min.css" %}
 {% endblock %}
 
 {% block pageContent %}
-    Something else
-    <img src="@imgs/something.jpg" alt="">
+  <section class="intro">
+    {% include "pages/index/parts/intro/_intro.html" %}
+  </section>
 {% endblock %}

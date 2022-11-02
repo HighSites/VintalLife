@@ -1,79 +1,78 @@
-@use '../../comps' as *
+@use '../../comps/style' as *
     
 .header
-    width: 100%
+  width: 100%
 
-    &__container
-      width: 100%
-      padding-block: rem(41px)
+  &__container
+    @include avr(padding-block, 37px, 30px)
+    display: flex
+    align-items: center
+    justify-content: space-between
 
-      display: flex
-      align-items: center
-      justify-content: space-between
+  &__logo 
+    line-height: 0
+    display: inline-block
+    width: min-content
 
-    &__logo 
-      line-height: 0
-      display: inline-block
-      width: min-content
-      svg
-        display: inline-block
-        width: min-content
-        height: rem(24px)
+  &__logo-svg
+    display: inline-block
+    width: min-content
+    height: rem(24px)
+    & > *:not(.svg__triangle)
+      fill: var(--color-text)
+      @include anim(fill, long)
 
-        & > *:not(.svg__triangle)
-          fill: var(--color-text)
-          @include anim(fill)
+  &__call
+    display: flex
+    flex-direction: column
+    @include avr(gap, 7px, 15px)
+    text-align: center
 
-    &__call
-      display: flex
-      flex-direction: column
-      @include avr(gap, 7px, 15px)
-      text-align: center
+  &__btn-transparent
+    font-size: rem(14px)
 
-    &__functionality
-      display: flex
-      align-items: center
-      gap: rem(13px)
+  &__functionality
+    display: flex
+    align-items: center
+    gap: rem(13px)
 
-    &__theme-toggle
-      line-height: 0
-      width: rem(25px)
-      .svg__circle
-        fill: var(--color-text)
-        @include anim(fill)
-      .svg__moon
-        fill: var(--color-bg)
-        @include anim(fill)
+  &__theme-toggle
+    line-height: 0
+    width: rem(25px)
+    .svg__circle
+      fill: var(--color-text)
+      @include anim(fill, long)
+    .svg__moon
+      fill: var(--color-bg)
+      @include anim(fill, long)
         
-    &__nav  
-    &__nav-button
-      display: grid
-      grid-template-columns: repeat(2, 1fr)
-      gap: rem(2.5px)
-      @include anim(gap)
+  &__nav-button
+    display: grid
+    grid-template-columns: repeat(2, 1fr)
+    gap: rem(2.5px)
 
-      &._toggleActive
-        .header__nav-elem
-          transform: rotate(90deg + 45deg)
+    &._toggleActive
+      .header__nav-elem
+        transform: rotate(90deg + 45deg)
 
-    &__nav-elem
-      display: block
-      $size: rem(16.5px)
-      width: $size
-      height: $size
-      background-color: var(--color-text)
-      border-radius: rem(2px)
-      @include anim(transform)
+  &__nav-elem
+    display: block
+    $size: rem(16.5px)
+    width: $size
+    height: $size
+    background-color: var(--color-text)
+    border-radius: rem(2px)
+    @include anim(transform background-color, long)
 
-    &__menu 
-      padding: rem(30px) rem(37px)
-      text-align: center
-      color: $colorBg
-      background-color: $colorSecondary
-      list-style: none
+  &__menu 
+    padding: rem(30px) rem(37px)
+    text-align: center
+    color: $colorBg
+    background-color: $colorSecondary
+    list-style: none
       
-    &__nav-link
-      padding-block: rem(23px)
+  &__nav-link
+    padding-block: rem(23px)
 
 .nav
   &__button
@@ -89,13 +88,16 @@
     left: 50%
     transform: translateX(-50%)
     @include anim(transform)
+    max-height: 90vh
+    overflow: auto
+
     &._toggleActive
       transform: translate(-50%, 100%)
     
 @media (min-width: rem($bpMid))
   .header
     &__container
-      @include avr(padding-right, 28px, 763px)
+      padding-right: calc(var(--intro-big-image) + 35px)
   
     &__call
       flex-direction: row

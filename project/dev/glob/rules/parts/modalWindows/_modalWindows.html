@@ -1,0 +1,20 @@
+{% import "../../comps/html/_forms.html" as forms %}
+<div role="dialog" aria-modal="true" data-toggle-target="modal call order" data-toggle-type="modal" class="modal-window modal-window_purpose--order">
+  <button data-toggle-safe-area="[data-form-response-accept]; [data-form-response-decline]" data-toggle-trigger="modal call order" data-toggle-type="burger severalToggles" class="modal-window__close-button">
+    <span class="modal-window__close-button-elem">line</span>
+    <span class="modal-window__close-button-elem">line</span>
+  </button>
+  {{forms.default('modal-window', 'Менеджер перезвонит вам в ближайшее время', 'Заполните поля ниже')}}
+</div>
+<div data-form-response-accept data-toggle-target="modal check form accept" role="dialog" aria-modal="true" data-toggle-type="modal" class="modal-window modal-window_purpose--check modal-window_purpose--check_verdict--accept">
+  <img src="@imgsGlob/modal-windows/accept.svg" alt="Everything is good">
+  <h3 class="title modal-window__title">Спасибо!</h3>
+  <p class="text modal-window__text">Ваша заявка была отправлена и в ближайшее время будет обработана</p>
+  <button data-toggle-trigger="modal check form accept" class="btn modal-window__btn">Хорошо</button>
+</div>
+<div data-form-response-decline data-toggle-target="modal check form decline" role="dialog" aria-modal="true" data-toggle-type="modal" class="modal-window modal-window_purpose--check modal-window_purpose--check_verdict--decline">
+  <img src="@imgsGlob/modal-windows/decline.svg" alt="Something is wrong">
+  <h3 class="title modal-window__title">Неправильно заполнены поля!</h3>
+  <p class="text modal-window__text">Поле «Имя» обязательно для заполнения!Поле «Телефон» обязательно для заполнения!</p>
+  <button data-toggle-trigger="modal check form decline" class="btn modal-window__btn">Хорошо</button>
+</div>

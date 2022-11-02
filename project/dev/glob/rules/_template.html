@@ -1,26 +1,39 @@
+{% import "glob/rules/comps/html/_svg.html" as svg %}
 {% set telephone = "+7 (962) 88-777-51" %}
 <!DOCTYPE html>
 <html lang="ru">
-    <head>
-        <meta charset="UTF-8">
-        <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        
-        <link rel="shortcut icon" href="@imgs/favicon.png" type="image/x-icon">
-        <link rel="preload" as="style" href="style/{% block pageId %}{% endblock %}.min.css" onload="this.onload=null;this.rel='stylesheet'">
-        <style>
-            {% block style %}{% endblock %}
-        </style>
-        <script defer src="js/app.min.js"></script>
+  <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-        <title>
-            {% block title %}{% endblock %}
-        </title>
-    </head>
-    <body>
-        <div class="wrapper">
-            <header class="header">{% include "./parts/header/_header.html" %}</header>
-            <main>{% block pageContent %}{% endblock %}</main>
-            <footer class="footer">{% include "./parts/footer/_footer.html" %}</footer>
-        </div>
-    </body>
+    <link rel="shortcut icon" href="@imgsGlob/favicon.png" type="image/x-icon">
+    <link
+      rel="preload"
+      as="style"
+      href="style/{% block pageId %}{% endblock %}.min.css"
+      onload="this.onload=null;this.rel='stylesheet'">
+    <style>
+      {% block style %}{% endblock %}
+    </style>
+    <script defer src="js/app.min.js"></script>
+
+    <title>
+      {% block title %}{% endblock %}
+    </title>
+  </head>
+  <body>
+    <div class="wrapper">
+      <header class="header">{% include "./parts/header/_header.html" %}</header>
+      <main>
+        {% block pageContent %}{% endblock %}
+      </main>
+      <footer class="footer">{% include "./parts/footer/_footer.html" %}</footer>
+    </div>
+    <div class="service-elements" aria-hidden="true" style="visibility: hidden;height: 0;overflow: hidden;">
+      {# This one is below for determing scrollbar width (for body locking) #}
+      <div class="scrollbarWidthDetector">Element with scrollbar to define scrollbar width</div>
+      {% include "glob/rules/parts/modalWindows/_modalWindows.html" %}
+      {{ svg.marble1('marble1') }}
+    </div>
+  </body>
 </html>

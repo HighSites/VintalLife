@@ -10,7 +10,8 @@ const njk = () => {
   return $.gulp.src($.path.html.src)
     .pipe($.plumber($.conf.plumber))
     .pipe(nunjucksRender($.conf.nunjucksRender))
-    .pipe($.replace('@imgs/', $.path.imgs.dest_cat))
+    .pipe($.replace('@imgsGlob', $.path.imgs.dest_cat))
+    .pipe($.replace('@imgs', function handleReplace(match){return $.path.imgs.dest_cat + '\\' + this.file.stem;}))
     
     .pipe($.gulpif($.conf.isProd || $.conf.isPreProd, versionNumber($.conf.versionNumber)))
     .pipe($.gulpif($.conf.isProd || $.conf.isPreProd, ($.gulpif($.conf.isAvif, avifWebpHTML()))))

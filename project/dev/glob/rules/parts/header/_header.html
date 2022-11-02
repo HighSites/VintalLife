@@ -1,25 +1,41 @@
+{% import "../../comps/html/_svg.html" as svg %}
+
 <div class="container header__container">
-    <a href="index.html" class="header__logo">{% include "../../../assets/svg/logo.svg" %}</a>
-    <div data-adtf="main, first, 0; .container.header__container, 2, 1400" class="header__call">
-        <a href="tel:{{telephone}}">{{telephone}}</a>
-        <button class="btn btn--transparent btn-text">Заказать обратный звонок</button>
-    </div>
-    <div class="header__functionality">
-        <button data-themeToggle class="header__theme-toggle">{% include "../../../assets/svg/themeToggle.svg" %}</button>
-        <nav class="nav header__nav">
-            <button class="nav__button header__nav-button" data-toggle-trigger="burgerMenu" data-toggle-type="burger">
-                <span class="nav__button-elem header__nav-elem">square</span>
-                <span class="nav__button-elem header__nav-elem">square</span>
-                <span class="nav__button-elem header__nav-elem">square</span>
-                <span class="nav__button-elem header__nav-elem">square</span>
-            </button>
-            <ul class="nav__menu header__menu" data-toggle-target="burgerMenu">
-                <li class="nav__link header__nav-link"><a class="link" href="#">Преимущества</a></li>
-                <li class="nav__link header__nav-link"><a class="link" href="#">Каталог</a></li>
-                <li class="nav__link header__nav-link"><a class="link" href="#">Партнеры</a></li>
-                <li class="nav__link header__nav-link"><a class="link" href="#">Рассрочка</a></li>
-                <li class="nav__link header__nav-link"><a class="link" href="#">Контакты</a></li>
-            </ul>
-        </nav>
-    </div>
+  <a href="index.html" class="header__logo">{{ svg.logo('header__logo-svg') }}</a>
+  <div data-adtf="main, 2, 0; .container.header__container, 2, 1400" class="header__call">
+    <a href="tel:{{ telephone }}">{{ telephone }}</a>
+    <button
+      data-toggle-trigger="modal call order"
+      data-toggle-type="burger severalToggles"
+      data-toggle-safe-area="[data-form-response-accept]; [data-form-response-decline]"
+      class="btn btn--transparent btn-text header__btn-transparent">Заказать обратный звонок</button>
+  </div>
+  <div class="header__functionality">
+    <button data-themeToggle class="header__theme-toggle">{{ svg.themeToggle('header__theme-toggle-svg') }}</button>
+    <nav class="nav header__nav">
+      <button class="nav__button header__nav-button" data-toggle-trigger="burgerMenu" data-toggle-type="burger">
+        <span class="nav__button-elem header__nav-elem">square</span>
+        <span class="nav__button-elem header__nav-elem">square</span>
+        <span class="nav__button-elem header__nav-elem">square</span>
+        <span class="nav__button-elem header__nav-elem">square</span>
+      </button>
+      <ul class="nav__menu header__menu" data-toggle-target="burgerMenu">
+        <li class="nav__link header__nav-link">
+          <a class="link" href="#">Преимущества</a>
+        </li>
+        <li class="nav__link header__nav-link">
+          <a class="link" href="#">Каталог</a>
+        </li>
+        <li class="nav__link header__nav-link">
+          <a class="link" href="#">Партнеры</a>
+        </li>
+        <li class="nav__link header__nav-link">
+          <a class="link" href="#">Рассрочка</a>
+        </li>
+        <li class="nav__link header__nav-link">
+          <a class="link" href="#">Контакты</a>
+        </li>
+      </ul>
+    </nav>
+  </div>
 </div>

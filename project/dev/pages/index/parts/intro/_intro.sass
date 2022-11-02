@@ -1,2 +1,197 @@
-.intro-property
-    transform: translateX(50%)
+@use '../../glob/rules' as *
+
+.intro
+  position: relative
+
+  &::before
+    @include marble(#marble1)
+    width: rem(478px)
+    height: rem(535px)
+    transform: rotate(-121deg)
+    left: 46%
+    top: -10%
+
+  &__container
+    @include avr(padding-top, 50px, 20px)
+    @include avr(padding-bottom, 21px, 35px)
+    color: $colorText_theme--dark
+
+  &__example-of-work
+    position: absolute
+    z-index: -1
+    width: 100%
+    height: 100%
+    left: 0
+    top: 0
+    margin: 0
+
+    img
+      width: 100%
+      height: 100%
+      object-position: center
+      object-fit: cover
+
+  &__info
+    &--main
+      display: flex
+      flex-direction: column
+      align-items: center
+      text-align: center
+      padding: rem(69px) rem(20px)
+      @include avr (padding-top, 69px, 124px)
+      background-color: rgba($colorBg_theme--dark, .5)
+      backdrop-filter: blur(3px)
+      &:not(:last-child)
+        margin-bottom: rem(38px)
+
+    &--secondary
+      display: flex
+      align-items: center
+      justify-content: space-between
+
+  &__decorating-example-of-work
+    display: none
+
+  &__headline
+    margin: 0
+    &:not(:last-child)
+      @include avr(margin-bottom, 20px, 10px)
+    @include avr(font-size, 40px, 60px)
+    text-transform: uppercase 
+    text-align: center
+
+    & > *
+      display: block
+      
+    & > *:first-child
+      @include avr(font-size, 40px, 70px)
+      color: transparent
+      -webkit-text-stroke: .5px $colorText_theme--dark
+
+    & > *:last-child
+      text-align: left
+
+  &__btn
+      background-color: $colorText
+      font-size: rem(14px)
+      &:not(:last-child)
+        margin-bottom: rem(10px)
+
+  &__btn_purpose
+    &--calculate
+      background-color: $colorAccent
+
+    &--catalog
+      position: relative
+      color: $colorText_theme--dark
+
+      span:not(:first-child)
+        display: none
+
+      &::after
+        content: ''
+        display: inline-block
+        position: absolute
+        width: rem(45px)
+        height: rem(2px)
+        top: calc(50% - rem(1px))
+        left: calc(100% + rem(15px))
+        background-color: $colorText_theme--dark
+        @include anim(background-color)
+
+      &:hover, &:active
+        &::after
+          background-color: $colorAccent
+
+  &__soc-icons
+    display: flex
+    gap: rem(20px)
+
+  &__soc-icon
+    width: rem(25px)
+    svg
+      fill: $colorText_theme--dark
+      @include anim(fill)
+
+    &:hover, &:active
+      svg
+        fill: $colorSecondary
+
+
+@media (min-width: rem($bpMid))
+  .intro
+    &__container
+      padding-right: var(--intro-big-image)
+      display: flex
+      flex-wrap: wrap
+      overflow: visible
+
+    &__example-of-work
+      position: relative
+      height: rem(529px)
+      width: 27%
+      overflow: visible
+      text-align: right
+      direction: rtl
+
+      img
+        width: auto
+
+    &__info
+      &--main
+        margin: 0 auto
+        background: none
+        backdrop-filter: none
+        align-items: start
+
+      &--secondary
+        width: 100%
+        padding-block: rem(11px)
+        padding-right: rem(30px)
+
+    &__headline
+      color: var(--color-text)
+      & > *:first-child
+        -webkit-text-stroke: 1px var(--color-text)
+
+    &__btn  
+      margin-left: rem(10px)    
+
+    &__btn_purpose
+
+      &--calculate
+
+      &--catalog
+        color: var(--color-text)
+        span:first-child
+          display: none
+        span:last-child
+          display: inline
+        &::after
+          background-color: var(--color-text)  
+
+    &__decorating-example-of-work
+      display: inline-block
+      position: absolute
+      z-index: -1
+      $headerHeight: 114px
+      height: calc(100% + $headerHeight)
+      top: -$headerHeight
+      left: calc(100% - var(--intro-big-image))
+      object-fit: cover
+      object-position: center
+
+    &__soc-icons
+
+    &__soc-icon
+      svg
+        fill: $colorSecondary
+      &:hover, &:active
+        svg
+          fill: $colorAccent
+  
+  .body_theme--dark
+    .intro
+      &__soc-icon 
+        svg
+          fill: var(--color-text)

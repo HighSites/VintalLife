@@ -69,19 +69,25 @@
 @mixin avr_midImp($props, $initSize, $midSize, $endSize, $initWidth: $bpMin, $midWidth: $bpMid, $endWidth: $bpMax)
     @for $i from 1 through length($props)
         $property: #{nth($props, $i)}
-        $property: $initSize
+        #{$property}: #{$initSize}
 
         @if not ($midSize == nan)
             @media (min-width: #{em($midWidth)})
-                $property: $midSize    
+                #{$property}: #{$midSize}    
 
         @if not ($endSize == nan)
             @media (min-width: #{em($endWidth)})
-                $property: $endSize    
+                #{$property}: #{$endSize}    
     //it's convinient to use avr_mid mixin to write 2 media queries
     //but due to calc issues it can be used only with px, so this is a callback for %, deg, em, turn etc
-    
-    
-         
-    
-         
+
+//FOR A PROJECT
+
+@mixin marble ($id)
+  content: ''
+  display: inline-block
+  position: absolute
+  z-index: -1
+  clip-path: url(#{$id})
+  background: center / cover no-repeat var(--marble)
+  

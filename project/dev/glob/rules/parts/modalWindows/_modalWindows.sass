@@ -1,0 +1,122 @@
+@use '../../comps/style' as *
+
+.modal-window
+  position: fixed
+  z-index: -10
+  @include avr(width, 360px, 889px)
+  @include avr_midImp(height, rem(507px), auto, nan)
+  left: 50%
+  top: 50%
+  padding-block: rem(80px)
+  background-color: var(--color-bg)
+  text-align: center
+  transform: translate(-50%, -100%) rotateX(90deg) perspective(100rem)
+  opacity: 0
+  overflow: hidden
+  @include anim(transform opacity background-color)
+
+  &::before
+    @include marble(#marble1)
+    @include avr_midImp(width, prc(206, 360), prc(337, 889), nan)
+    @include avr_midImp(height, prc(230, 507), prc(377, 602), nan)
+    @include avr_midImp(transform, rotate(92deg), rotate(-122deg), nan)
+    @include avr_midImp(left, -20%, prc(642, 889), nan)
+    @include avr_midImp(top, -17%, prc(-86, 602), nan)
+    @include anim(width height transform left top)
+
+  &::after
+    @include marble(#marble1)
+    @include avr_midImp(width, prc(248, 360), prc(337, 889), nan)
+    @include avr_midImp(height, prc(280, 507), prc(377, 602), nan)
+    @include avr_midImp(transform, rotate(-80deg), rotate(-130deg), nan)
+    @include avr_midImp(right, -30%, prc(650, 889), nan)
+    @include avr_midImp(bottom, -16%, prc(-120, 602), nan)
+    @include anim(width height transform right bottom)
+
+  &._toggleActive
+    visibility: visible
+    z-index: 10
+    transform: translate(-50%, -50%) perspective(100rem)
+    opacity: 1
+
+  &__close-button
+    position: absolute
+    @include avr(right top, 20px, 51px)
+    display: flex
+    flex-direction: column
+    @include avr(padding-block, 12px, 20px)
+
+  &__close-button-elem
+    font-size: 0
+    line-height: 0
+    display: inline-block
+    @include avr(width, 31px, 45px)
+    height: rem(2px)
+    border-radius: rem(1px)
+    background-color: var(--color-text)
+    &:first-child
+      transform: rotate(45deg) translateY(.5px)
+    &:last-child
+      transform: rotate(-45deg) translateY(-.5px)
+
+  &__form-legend
+    &:not(:last-child)
+      @includde avr(margin-bottom, 20px, 40px)
+
+  &__form-headline
+    @extend .title
+    text-transform: none
+    text-align: center
+
+  &__form-title
+    @extend .text
+    text-align: center
+
+  &__form-small
+    text-align: center
+
+  &__title
+    text-align: center
+
+  &__btn
+    background-color: $colorSecondary
+    max-width: 100%
+
+  &__text
+    text-align: center
+
+.modal-window_purpose
+    &--order
+      @include avr(padding-block, 80px, 95px)
+      @include avr(padding-inline, 20px, 90px)
+    &--check
+      @include avr(padding-inline, 83px, 146px)
+      & > *
+        &:not(:last-child)
+          @include avr(margin-bottom, 20px, 26px)
+
+@media (min-width: em($bpMid))
+  .modal-window
+    &_purpose
+      &--order
+        height: auto
+
+    &__form-headline
+      font-family: 'SovMod', fantasy
+      font-weight: 400
+      font-size: rem(40px)
+      line-height: 1.15
+      text-transform: uppercase
+
+    &__form-title
+      font-family: 'Montserrat', sans-serif
+      font-weight: 500
+      font-size: rem(25px)
+
+    &__form-input, &__form-submit, &__form-small
+      width: prc(580, 890)
+
+
+
+
+

@@ -1,0 +1,92 @@
+@use 'variables' as *
+@use 'mixins' as *
+
+.btn
+    width: rem(260px)
+    height: rem(54px)
+    color: $colorText_theme--dark
+    @include anim(color background-color)
+
+    &:hover
+        background-color: $colorAccent
+        color: $colorBg
+    &:active
+        background-color: $colorBg_theme--dark
+
+.btn--transparent
+    color: $colorSecondary
+    border: 1px solid $colorSecondary
+    background-color: transparent
+
+    &:hover
+      border: none
+      background-color: $colorSecondary
+
+.body_theme--dark
+    .btn--transparent
+        color: $colorText_theme--dark
+        border-color: $colorText_theme--dark
+
+.link
+    background-color: transparent
+    @include anim(color)
+
+    &:hover, &:active
+        color: $colorAccent
+
+.form
+  &__fieldset
+    margin: 0
+    padding: 0
+    border: none
+    &:not(:last-child)
+      @include avr(margin-bottom, 20px, 25px)
+
+  &__legend
+    &:not(:last-child)
+      @include avr(margin-bottom, 16px, 40px)
+
+  &__headline
+    margin: 0
+    margin-inline: -1%
+    &:not(:last-child)
+      margin-bottom: rem(9px)
+
+  &__title
+    display: inline-block
+    width: 100%
+
+  &__label
+    display: block
+    &:not(:last-child)
+      @include avr(margin-bottom, 10px, 20px)
+
+    span
+      position: absolute
+      font-size: 0
+      line-height: 0
+
+  &__input
+    width: 100%
+    height: rem(60px)
+    border: 1px solid var(--color-text)
+    @include avr(padding-left, 30px, 20px)
+    background-color: var(--color-bg)
+    color: var(--color-text)
+    @include anim(border background-color color)
+    &:focus-visible
+      border-color: $colorSecondary
+  &__button
+    width: 100%
+    background-color: $colorSecondary
+    &:not(:last-child)
+      margin-bottom: rem(5px)
+  &__small
+    display: inline-block
+    width: 100%
+    font-size: rem(14px)
+    text-align: left
+
+
+
+

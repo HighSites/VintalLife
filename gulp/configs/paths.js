@@ -52,9 +52,9 @@ export default {
         get watch() {
             return this.src.map(path => path +'*.*')
         },
-        dest_cat: "media/",
+        dest_cat: "media",
         get dest() {
-            return pathDest +`/${this.dest_cat}`
+            return pathDest +`/${this.dest_cat}/`
         }
     },
 

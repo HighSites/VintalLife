@@ -1,0 +1,31 @@
+{% macro default(parent, title, hint) %}
+  <form action="#" method="" class="form {{ parent + '__form' }}">
+    <fieldset class="form__fieldset {{ parent + '__form-fieldset' }}">
+      <legend class="form__legend {{ parent + '__form-legend' }}">
+        <h2 class="headline form__headline {{ parent + '__form-headline' }}">{{ title }}</h2>
+        <h3 class="title form__title {{ parent + '__form-title' }}">{{ hint }}<h3>
+      </legend>
+      <label class="form__label {{ parent + '__label' }}">
+        <span>Введите свое имя</span>
+        <input
+          required
+          type="text"
+          name="customer_name"
+          placeholder="Имя"
+          enterkeyhint="next"
+          class="form__input form__input--name {{ parent + '__name-input' }} {{ parent + '__form-input' }}"></label>
+        <label class="form__label {{ parent + '__label' }}">
+          <span>Введите номер телефона</span>
+          <input
+            required
+            type="tel"
+            name="customer_phone"
+            placeholder="Ваш телефон"
+            enterkeyhint="next"
+            class="form__input form__input--phone {{ parent + '__phone-input' }} {{ parent + '__form-input' }}"></label>
+        </fieldset>
+        <button data-toggle-trigger="modal check" data-toggle-type="delay" type="submit" class="btn form__button {{ parent + '__form-submit' }}">
+        Отправить заявку</button>
+        <small class="form__small {{ parent + '__form-small' }}">Нажимая на кнопку вы даете согласие на обработку данных</small>
+      </form>
+{% endmacro %}
