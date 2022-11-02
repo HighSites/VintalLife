@@ -89,7 +89,7 @@ let lockBody = () => {
     if (toggleTrigger.dataset.toggleSafeArea) {
       let area = toggleTrigger.dataset.toggleTrigger;
       let curZones = areasSafeZones.get(area);
-      curZones = toggleTrigger.dataset.toggleSafeArea + (curZones ? curZones: '');
+      curZones = toggleTrigger.dataset.toggleSafeArea + (curZones ? curZones : '');
       areasSafeZones.set(toggleTrigger.dataset.toggleTrigger, curZones);
     }
     toggleTrigger.addEventListener('click', event => {
@@ -239,36 +239,52 @@ import { AsYouType } from 'libphonenumber-js'
       input.setCustomValidity('');
     else input.setCustomValidity('This phone number is not valid');
   }
-}())
+}());
 
-  //form validating message
-  (function () {
-    let formsSubmitters = document.querySelectorAll('button[type="submit"]');
-    if (formsSubmitters)
-      formsSubmitters.forEach(btn => {
-        btn.addEventListener('click', event => {
-          let curNode = btn;
-          while (curNode != document && curNode.nodeName != 'FORM') {
-            curNode = curNode.parentNode;
-          }
-          // console.debug('FormSub: found parent', curNode);
-          if (curNode == document)
-            return;
-          let form = curNode;
-          // console.debug('FormSub: form for a button', form);
-          let response;
-          if (form.checkValidity())
-            response = document.querySelector('[data-form-response-accept]');
-          else response = document.querySelector('[data-form-response-decline]');
-          // console.debug('FormSub: response window', response);
-          btn.dataset.toggleTrigger = response.dataset.toggleTarget;
-          // console.debug('FormSub: final button', btn);
-          // response.classList.add('_toggleActive');
-          // let triggers = document.querySelectorAll(`[data-toggle-trigger="${response.dataset.toggleTarget}"]`);
-          // if (triggers)
-          //   triggers.forEach(trigger => {
-          //     trigger.classList.toggle('_toggleActive');
-          //   })
-        })
+//form validating message
+(function () {
+  let formsSubmitters = document.querySelectorAll('button[type="submit"]');
+  if (formsSubmitters)
+    formsSubmitters.forEach(btn => {
+      btn.addEventListener('click', event => {
+        let curNode = btn;
+        while (curNode != document && curNode.nodeName != 'FORM') {
+          curNode = curNode.parentNode;
+        }
+        // console.debug('FormSub: found parent', curNode);
+        if (curNode == document)
+          return;
+        let form = curNode;
+        // console.debug('FormSub: form for a button', form);
+        let response;
+        if (form.checkValidity())
+          response = document.querySelector('[data-form-response-accept]');
+        else response = document.querySelector('[data-form-response-decline]');
+        // console.debug('FormSub: response window', response);
+        btn.dataset.toggleTrigger = response.dataset.toggleTarget;
+        // console.debug('FormSub: final button', btn);
       })
-  }())
+    })
+}());
+
+(function() {
+  try {
+    document.querySelector('*:has(*)');
+    console.debug('POLY: has selector is supported');
+  } catch (error) {
+    console.debug('POLY: has selector is not supported');
+    let needHas = document.querySelectorAll('[data-polyfill-has]');
+    if (needHas)
+      needHas.forEach(elementToStyle => {
+        console.debug('POLY: this element needs a :has support', elementToStyle);
+        let elementToFind = elementToStyle.dataset.polyfillHas;
+        console.debug('POLY: it needs to have a', elementToFind);
+        if(elementToStyle.querySelector(elementToFind)) {
+          console.debug('POLY: it has it!');
+          elementToStyle.classList.add('_HasSupport-true');
+        }
+      });
+  }
+}());
+//to use => data-polyfill-pseudo-class = "arguments"
+//and write a code here!

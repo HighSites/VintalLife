@@ -2,8 +2,8 @@
   <form action="#" method="" class="form {{ parent + '__form' }}">
     <fieldset class="form__fieldset {{ parent + '__form-fieldset' }}">
       <legend class="form__legend {{ parent + '__form-legend' }}">
-        <h2 class="headline form__headline {{ parent + '__form-headline' }}">{{ title }}</h2>
-        <h3 class="title form__title {{ parent + '__form-title' }}">{{ hint }}<h3>
+        <h2 class="headline form__headline {{ parent + '__form-headline' }}">{{ title | safe}}</h2>
+        <h3 class="title form__title {{ parent + '__form-title' }}">{{ hint | safe}}<h3>
       </legend>
       <label class="form__label {{ parent + '__label' }}">
         <span>Введите свое имя</span>

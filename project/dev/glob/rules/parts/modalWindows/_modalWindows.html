@@ -18,3 +18,42 @@
   <p class="text modal-window__text">Поле «Имя» обязательно для заполнения!Поле «Телефон» обязательно для заполнения!</p>
   <button data-toggle-trigger="modal check form decline" class="btn modal-window__btn">Хорошо</button>
 </div>
+<div data-toggle-target="catalog" role="dialog" aria-modal="true" class="modal-window modal-window_purpose--catalog">
+  <button data-toggle-safe-area="[data-form-response-accept]; [data-form-response-decline]" data-toggle-trigger="catalog" data-toggle-type="burger severalToggles" class="modal-window__close-button">
+    <span class="modal-window__close-button-elem">line</span>
+    <span class="modal-window__close-button-elem">line</span>
+  </button>
+  <h3 class="headline modal-catalog__headline">АРТ ДЕКО</h2>
+  <div class="modal-catalog__galery">
+    {% set galery = 'iiiiifiiif' %}
+    {% set galeryForms = [
+    {
+      'title': 'Как правило наш расчет кухни дешевле на <b>15-40%</b> чем в других компаниях по такому же проекту',
+      'hint': 'Позвоните: <a href="tel:{{ telephone }}"><b>{{ telephone }}</b></a> или оставьте заявку на расчёт и мы удивим Вас ценой' | replace('{{ telephone }}', telephone)
+    },
+    {
+      'title': 'Откройте полный каталог кухонь в стиле Арт Деко',
+      'hint': 'Укажите свой телефон. Менеджер поможет разобраться в каталоге'
+    }
+    ] %}
+    {% set curImage, curForm = 1 %}
+    {% for item in galery %}
+      <div data-polyfill-has="form" class="modal-catalog__cell">
+        {% if item == 'i' %}
+          <img src="@imgs/catalog/kitchen{{curImage}}.jpg" alt="kitchen made by us" class="modal-catalog__image">  
+          {% set curImage = curImage + 1 %}
+        {% else %}
+          {{forms.default('modal-catalog', galeryForms[curForm - 1].title, galeryForms[curForm - 1].hint)}}
+          {% set curForm = curForm + 1 %}
+        {% endif %}
+      </div>
+    {% endfor %}
+    {% set EmptyEls = (4 - (galery | length % 4)) % 4 %}
+    {% if (EmptyEls > 0) %}
+      {% for i in range(0, EmptyEls - 1) %}
+        <div class="modal-catalog__cell--empty">
+        </div>
+      {% endfor %}
+    {% endif %}
+  </div>
+</div>
